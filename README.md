@@ -36,6 +36,8 @@ La app queda en http://localhost:3000.
 
 ## Comandos útiles
 
+Antes de correr comandos que usen Node (tests, `npm`, `npx`), activá la versión del proyecto con `nvm use`. `bin/dev` lo hace solo.
+
 ```bash
 bin/rails test        # tests
 bin/rubocop           # estilo Ruby
