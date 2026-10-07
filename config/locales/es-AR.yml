@@ -1,0 +1,37 @@
+es-AR:
+  activerecord:
+    models:
+      author:
+        one: Autor
+        other: Autores
+      book:
+        one: Libro
+        other: Libros
+      category:
+        one: Categoría
+        other: Categorías
+      publisher:
+        one: Editorial
+        other: Editoriales
+    attributes:
+      author:
+        name: Nombre
+        books: Libros
+        book_authors: libros
+      book:
+        title: Título
+        location: Ubicación
+        authors: Autores
+        categories: Categorías
+        publishers: Editoriales
+      category:
+        name: Nombre
+        books: Libros
+        book_categories: libros
+      publisher:
+        name: Nombre
+        books: Libros
+        book_publishers: libros
+  errors:
+    messages:
+      taken: ya existe

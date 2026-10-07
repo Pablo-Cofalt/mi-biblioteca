@@ -57,3 +57,5 @@ end
 gem "inertia_rails", "~> 3.22"
 
 gem "vite_rails", "~> 3.11"
+
+gem "rails-i18n", "~> 8.1"
