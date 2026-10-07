@@ -1,0 +1,80 @@
+# Sample catalog to try the app locally. Only loaded in development.
+
+BOOKS = [
+  { title: "Cuentos de la selva", authors: [ "Horacio Quiroga" ], publishers: [ "Colihue" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 1 - A" },
+  { title: "Cuentos de amor de locura y de muerte", authors: [ "Horacio Quiroga" ], publishers: [ "Losada" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 1 - A" },
+  { title: "Dailan Kifki", authors: [ "María Elena Walsh" ], publishers: [ "Alfaguara" ], categories: [ "Novela", "Infantil" ], location: "Estante 2 - A" },
+  { title: "Tutú Marambá", authors: [ "María Elena Walsh" ], publishers: [ "Alfaguara" ], categories: [ "Poesía", "Infantil" ], location: "Estante 2 - A" },
+  { title: "El Reino del Revés", authors: [ "María Elena Walsh" ], publishers: [ "Alfaguara" ], categories: [ "Poesía", "Infantil" ], location: "Estante 2 - A" },
+  { title: "Zoo Loco", authors: [ "María Elena Walsh" ], publishers: [ "Alfaguara" ], categories: [ "Poesía", "Infantil" ], location: "Estante 2 - A" },
+  { title: "Ficciones", authors: [ "Jorge Luis Borges" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 3 - B" },
+  { title: "El Aleph", authors: [ "Jorge Luis Borges" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 3 - B" },
+  { title: "Rayuela", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Novela", "Clásicos" ], location: "Estante 3 - B" },
+  { title: "Historias de cronopios y de famas", authors: [ "Julio Cortázar" ], publishers: [ "Alfaguara" ], categories: [ "Cuentos" ], location: "Estante 3 - B" },
+  { title: "Bestiario", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos" ], location: "Estante 3 - B" },
+  { title: "Martín Fierro", authors: [ "José Hernández" ], publishers: [ "Colihue" ], categories: [ "Poesía", "Clásicos" ], location: "Estante 1 - B" },
+  { title: "Don Segundo Sombra", authors: [ "Ricardo Güiraldes" ], publishers: [ "Losada" ], categories: [ "Novela", "Clásicos" ], location: "Estante 1 - B" },
+  { title: "Facundo", authors: [ "Domingo Faustino Sarmiento" ], publishers: [ "Colihue" ], categories: [ "Ensayo", "Historia" ], location: "Estante 1 - B" },
+  { title: "El túnel", authors: [ "Ernesto Sabato" ], publishers: [ "Seix Barral" ], categories: [ "Novela" ], location: "Estante 3 - C" },
+  { title: "Los días del venado", authors: [ "Liliana Bodoc" ], publishers: [ "Norma" ], categories: [ "Novela", "Fantasía", "Juvenil" ], location: "Estante 4 - A" },
+  { title: "Los días de la sombra", authors: [ "Liliana Bodoc" ], publishers: [ "Norma" ], categories: [ "Novela", "Fantasía", "Juvenil" ], location: "Estante 4 - A" },
+  { title: "Los días del fuego", authors: [ "Liliana Bodoc" ], publishers: [ "Norma" ], categories: [ "Novela", "Fantasía", "Juvenil" ], location: "Estante 4 - A" },
+  { title: "Aventuras y desventuras de Casiperro del Hambre", authors: [ "Graciela Montes" ], publishers: [ "Colihue" ], categories: [ "Novela", "Juvenil" ], location: "Estante 4 - B" },
+  { title: "Otroso", authors: [ "Graciela Montes" ], publishers: [ "Loqueleo" ], categories: [ "Novela", "Infantil" ], location: "Estante 2 - B" },
+  { title: "La batalla de los monstruos y las hadas", authors: [ "Ema Wolf" ], publishers: [ "Alfaguara" ], categories: [ "Cuentos", "Infantil" ], location: "Estante 2 - B" },
+  { title: "Barbanegra y los buñuelos", authors: [ "Ema Wolf" ], publishers: [ "Norma" ], categories: [ "Novela", "Infantil" ], location: "Estante 2 - B" },
+  { title: "Cada cual se divierte como puede", authors: [ "Gustavo Roldán" ], publishers: [ "Colihue" ], categories: [ "Cuentos", "Infantil" ], location: "Estante 2 - C" },
+  { title: "El monte era una fiesta", authors: [ "Gustavo Roldán" ], publishers: [ "Colihue" ], categories: [ "Cuentos", "Infantil" ], location: "Estante 2 - C" },
+  { title: "Secreto de familia", authors: [ "Isol" ], publishers: [ "Fondo de Cultura Económica" ], categories: [ "Libro álbum", "Infantil" ], location: "Estante 2 - C" },
+  { title: "El globo", authors: [ "Isol" ], publishers: [ "Fondo de Cultura Económica" ], categories: [ "Libro álbum", "Infantil" ], location: "Estante 2 - C" },
+  { title: "El buscador de finales", authors: [ "Pablo De Santis" ], publishers: [ "Alfaguara" ], categories: [ "Novela", "Misterio", "Juvenil" ], location: "Estante 4 - B" },
+  { title: "Enciclopedia en la hoguera", authors: [ "Pablo De Santis" ], publishers: [ "Norma" ], categories: [ "Novela", "Misterio", "Juvenil" ], location: "Estante 4 - B" },
+  { title: "Las visitas", authors: [ "Silvia Schujer" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos", "Infantil" ], location: "Estante 2 - C" },
+  { title: "Un elefante ocupa mucho espacio", authors: [ "Elsa Bornemann" ], publishers: [ "Alfaguara" ], categories: [ "Cuentos", "Infantil" ], location: "Estante 2 - D" },
+  { title: "¡Socorro!", authors: [ "Elsa Bornemann" ], publishers: [ "Alfaguara" ], categories: [ "Cuentos", "Terror", "Infantil" ], location: "Estante 2 - D" },
+  { title: "El Principito", authors: [ "Antoine de Saint-Exupéry" ], publishers: [ "Emecé" ], categories: [ "Novela", "Clásicos", "Infantil" ], location: "Estante 5 - A" },
+  { title: "Harry Potter y la piedra filosofal", authors: [ "J. K. Rowling" ], publishers: [ "Salamandra" ], categories: [ "Novela", "Fantasía", "Juvenil" ], location: "Estante 5 - A" },
+  { title: "Matilda", authors: [ "Roald Dahl" ], publishers: [ "Loqueleo" ], categories: [ "Novela", "Infantil" ], location: "Estante 5 - A" },
+  { title: "Charlie y la fábrica de chocolate", authors: [ "Roald Dahl" ], publishers: [ "Alfaguara" ], categories: [ "Novela", "Infantil" ], location: "Estante 5 - A" },
+  { title: "Cien años de soledad", authors: [ "Gabriel García Márquez" ], publishers: [ "Sudamericana" ], categories: [ "Novela", "Clásicos" ], location: "Estante 3 - C" },
+  { title: "Crónica de una muerte anunciada", authors: [ "Gabriel García Márquez" ], publishers: [ "Sudamericana" ], categories: [ "Novela" ], location: "Estante 3 - C" },
+  { title: "La casa de los espíritus", authors: [ "Isabel Allende" ], publishers: [ "Plaza & Janés" ], categories: [ "Novela" ], location: "Estante 3 - C" },
+  { title: "Mafalda 1", authors: [ "Quino" ], publishers: [ "Ediciones de la Flor" ], categories: [ "Historieta" ], location: "Estante 6 - A" },
+  { title: "Toda Mafalda", authors: [ "Quino" ], publishers: [ "Ediciones de la Flor" ], categories: [ "Historieta" ], location: "Estante 6 - A" },
+  { title: "El Eternauta", authors: [ "Héctor Germán Oesterheld", "Francisco Solano López" ], publishers: [ "Doedytores" ], categories: [ "Historieta", "Ciencia ficción" ], location: "Estante 6 - A" },
+  { title: "Las venas abiertas de América Latina", authors: [ "Eduardo Galeano" ], publishers: [ "Siglo XXI" ], categories: [ "Ensayo", "Historia" ], location: "Estante 7 - A" },
+  { title: "El libro de los abrazos", authors: [ "Eduardo Galeano" ], publishers: [ "Siglo XXI" ], categories: [ "Cuentos" ], location: "Estante 3 - D" },
+  { title: "Operación Masacre", authors: [ "Rodolfo Walsh" ], publishers: [ "Ediciones de la Flor" ], categories: [ "No ficción", "Historia" ], location: "Estante 7 - A" },
+  { title: "Juvenilia", authors: [ "Miguel Cané" ], publishers: [ "Colihue" ], categories: [ "Novela", "Clásicos" ], location: "Estante 1 - C" },
+  { title: "Platero y yo", authors: [ "Juan Ramón Jiménez" ], publishers: [ "Kapelusz" ], categories: [ "Clásicos" ], location: "Estante 1 - C" },
+  { title: "Veinte poemas de amor y una canción desesperada", authors: [ "Pablo Neruda" ], publishers: [ "Losada" ], categories: [ "Poesía" ], location: "Estante 3 - D" },
+  { title: "Antología de poesía argentina", authors: [], publishers: [ "Eudeba", "Biblioteca Nacional" ], categories: [ "Poesía", "Antología" ], location: "Estante 3 - D" },
+  { title: "Breve historia de la Argentina", authors: [ "José Luis Romero" ], publishers: [ "Fondo de Cultura Económica" ], categories: [ "Historia" ], location: "Estante 7 - B" },
+  { title: "Breve historia del tiempo", authors: [ "Stephen Hawking" ], publishers: [ "Crítica" ], categories: [ "Ciencia" ], location: "Estante 7 - B" },
+  { title: "Diario de Ana Frank", authors: [ "Ana Frank" ], publishers: [ "Debolsillo" ], categories: [ "No ficción", "Historia" ], location: "Estante 7 - B" },
+  { title: "Frankenstein", authors: [ "Mary Shelley" ], publishers: [ "Colihue" ], categories: [ "Novela", "Clásicos", "Terror" ], location: "Estante 5 - B" },
+  { title: "Drácula", authors: [ "Bram Stoker" ], publishers: [ "Colihue" ], categories: [ "Novela", "Clásicos", "Terror" ], location: "Estante 5 - B" },
+  { title: "El fantasma de Canterville", authors: [ "Oscar Wilde" ], publishers: [ "Colihue" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 5 - B" },
+  { title: "Las aventuras de Tom Sawyer", authors: [ "Mark Twain" ], publishers: [ "Kapelusz" ], categories: [ "Novela", "Clásicos", "Juvenil" ], location: "Estante 5 - C" },
+  { title: "Alicia en el país de las maravillas", authors: [ "Lewis Carroll" ], publishers: [ "Colihue" ], categories: [ "Novela", "Clásicos", "Fantasía" ], location: "Estante 5 - C" },
+  { title: "La isla del tesoro", authors: [ "Robert Louis Stevenson" ], publishers: [ "Kapelusz" ], categories: [ "Novela", "Clásicos", "Juvenil" ], location: "Estante 5 - C" },
+  { title: "El extraño caso del Dr. Jekyll y Mr. Hyde", authors: [ "Robert Louis Stevenson" ], publishers: [ "Colihue" ], categories: [ "Novela", "Clásicos", "Terror" ], location: "Estante 5 - C" },
+  { title: "Corazón", authors: [ "Edmondo De Amicis" ], publishers: [ "Kapelusz" ], categories: [ "Novela", "Clásicos" ], location: "Estante 1 - C" },
+  { title: "Manual Estrada 5", authors: [], publishers: [ "Estrada" ], categories: [ "Manual escolar" ], location: "Estante 8 - A" },
+  { title: "Ciencias Naturales 6", authors: [], publishers: [ "Santillana", "Ministerio de Educación" ], categories: [ "Manual escolar", "Ciencia" ], location: "Estante 8 - A" },
+  { title: "Atlas geográfico de la República Argentina", authors: [ "Instituto Geográfico Nacional" ], publishers: [ "Instituto Geográfico Nacional" ], categories: [ "Geografía", "Referencia" ], location: "Estante 8 - B" },
+  { title: "Diccionario de la lengua española", authors: [ "Real Academia Española" ], publishers: [ "Espasa" ], categories: [ "Referencia" ], location: nil }
+].freeze
+
+BOOKS.each do |data|
+  book = Book.find_or_initialize_by(title: data[:title])
+  book.update!(
+    location: data[:location],
+    authors: data[:authors].map { |name| Author.find_or_create_by!(name:) },
+    publishers: data[:publishers].map { |name| Publisher.find_or_create_by!(name:) },
+    categories: data[:categories].map { |name| Category.find_or_create_by!(name:) }
+  )
+end
+
+puts "Datos de ejemplo: #{Book.count} libros, #{Author.count} autores, " \
+     "#{Publisher.count} editoriales, #{Category.count} categorías."
