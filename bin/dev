@@ -2,6 +2,13 @@
 
 export PORT="${PORT:-3000}"
 
+# Use the Node version from .nvmrc when nvm is available
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh" --no-use
+  nvm use --silent || exit 1
+fi
+
 if command -v overmind 1> /dev/null 2>&1
 then
   overmind start -f Procfile.dev "$@"
