@@ -9,4 +9,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "books#index"
+
+  get "ingresar" => "sessions#new", as: :new_session
+  resource :session, only: %i[create destroy]
+
+  namespace :admin do
+    root "dashboard#index"
+  end
 end

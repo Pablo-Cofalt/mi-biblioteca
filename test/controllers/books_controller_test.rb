@@ -25,6 +25,20 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_equal({ page: 1, total_pages: 1, total_count: 3, per_page: 20 }, inertia.props[:pagination].to_h.symbolize_keys)
   end
 
+  test "shares no user when logged out" do
+    get root_path
+
+    assert_nil inertia.props[:auth][:user]
+  end
+
+  test "shares the logged-in user" do
+    sign_in_as users(:admin)
+
+    get root_path
+
+    assert_equal "admin@example.com", inertia.props[:auth][:user][:email_address]
+  end
+
   test "includes each book's details" do
     get root_path
 

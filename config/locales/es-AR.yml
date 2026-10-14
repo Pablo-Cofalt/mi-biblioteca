@@ -13,6 +13,9 @@ es-AR:
       publisher:
         one: Editorial
         other: Editoriales
+      user:
+        one: Usuario
+        other: Usuarios
     attributes:
       author:
         name: Nombre
@@ -32,6 +35,10 @@ es-AR:
         name: Nombre
         books: Libros
         book_publishers: libros
+      user:
+        email_address: Email
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
   errors:
     messages:
       taken: ya existe

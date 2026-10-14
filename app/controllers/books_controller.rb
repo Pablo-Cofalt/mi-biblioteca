@@ -1,4 +1,6 @@
 class BooksController < InertiaController
+  allow_unauthenticated_access
+
   def index
     search = BookSearch.new(params.permit(:q, :author_id, :category_id, :publisher_id, :direction, :page))
 
