@@ -83,6 +83,22 @@ BOOKS.each do |data|
   )
 end
 
+# A couple of books already in the trash, to try restoring and purging.
+TRASHED_BOOKS = [
+  { title: "Rayuela (cargado dos veces)", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Novela" ] },
+  { title: "Libro de prueba", authors: [], publishers: [], categories: [] }
+].freeze
+
+TRASHED_BOOKS.each do |data|
+  book = Book.find_or_initialize_by(title: data[:title])
+  book.update!(
+    author_names: data[:authors],
+    publisher_names: data[:publishers],
+    category_names: data[:categories],
+    discarded_at: book.discarded_at || Time.current
+  )
+end
+
 puts "Admin: #{ADMIN_EMAIL} / #{ADMIN_PASSWORD}"
-puts "Datos de ejemplo: #{Book.count} libros, #{Author.count} autores, " \
+puts "Datos de ejemplo: #{Book.kept.count} libros (#{Book.discarded.count} en la papelera), #{Author.count} autores, " \
      "#{Publisher.count} editoriales, #{Category.count} categorías."

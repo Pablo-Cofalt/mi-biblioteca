@@ -47,4 +47,28 @@ class BookTest < ActiveSupport::TestCase
 
     assert_equal %w[abeja Árbol nube Ñandú zorro], Book.alphabetical.pluck(:title)
   end
+
+  test "discarding keeps the book but hides it from kept" do
+    book = Book.create!(title: "Rayuela")
+
+    book.discard!
+
+    assert Book.exists?(book.id)
+    assert_not_includes Book.kept, book
+    assert_includes Book.discarded, book
+
+    book.undiscard!
+    assert_includes Book.kept, book
+  end
+
+  test "assigns lists by name, reusing existing ones regardless of case" do
+    existing = Author.create!(name: "Julio Cortázar")
+
+    book = Book.create!(title: "Rayuela", author_names: [ "julio cortázar", " Nuevo   Autor " ],
+                        category_names: [ "Novela" ], publisher_names: [])
+
+    assert_equal [ existing.name, "Nuevo Autor" ], book.authors.map(&:name)
+    assert_equal [ "Novela" ], book.categories.map(&:name)
+    assert_empty book.publishers
+  end
 end

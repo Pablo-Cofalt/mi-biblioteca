@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react'
-import { BookOpen, ExternalLink } from 'lucide-react'
+import { BookOpen, ExternalLink, Library } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 import { FlashMessages } from '@/components/flash-messages'
@@ -21,9 +21,15 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
           <nav className="flex items-center gap-1">
-            <span className="mr-2 hidden text-sm text-muted-foreground sm:inline">
+            <span className="mr-2 hidden text-sm text-muted-foreground md:inline">
               {auth.user?.email_address}
             </span>
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/admin/libros">
+                <Library />
+                <span className="hidden sm:inline">Libros</span>
+              </Link>
+            </Button>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/">
                 <ExternalLink />

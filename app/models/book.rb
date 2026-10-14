@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  include Discard::Model
+
   has_many :book_authors, -> { order(:id) }, dependent: :destroy
   has_many :authors, through: :book_authors
   has_many :book_categories, dependent: :destroy
@@ -11,6 +13,19 @@ class Book < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 255 }
   validates :location, length: { maximum: 255 }
+
+  # Assign lists by name, creating the ones that don't exist yet.
+  def author_names=(names)
+    self.authors = Author.for_names(names)
+  end
+
+  def category_names=(names)
+    self.categories = Category.for_names(names)
+  end
+
+  def publisher_names=(names)
+    self.publishers = Publisher.for_names(names)
+  end
 
   scope :alphabetical, ->(direction = :asc) { order(title: direction, id: :asc) }
 

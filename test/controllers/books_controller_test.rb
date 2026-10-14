@@ -56,6 +56,14 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_equal [ "Horacio Quiroga", "María Elena Walsh" ], inertia.props[:authors].pluck(:name)
   end
 
+  test "hides books in the trash" do
+    Book.find_by!(title: "Tutú Marambá").discard!
+
+    get root_path
+
+    assert_equal [ "Ánimas y otros cuentos", "Cuentos de la selva" ], titles
+  end
+
   test "sorts from Z to A" do
     get root_path(direction: "desc")
 

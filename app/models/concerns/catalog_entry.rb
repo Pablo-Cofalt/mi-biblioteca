@@ -11,4 +11,13 @@ module CatalogEntry
 
     scope :alphabetical, -> { order(:name) }
   end
+
+  class_methods do
+    # Finds each name ignoring case, creating the missing ones.
+    def for_names(names)
+      Array(names).map { |name| name.to_s.squish }.compact_blank.uniq(&:downcase).map do |name|
+        find_by("lower(name) = lower(?)", name) || create!(name:)
+      end
+    end
+  end
 end
