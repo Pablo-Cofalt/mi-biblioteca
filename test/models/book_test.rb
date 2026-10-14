@@ -71,4 +71,14 @@ class BookTest < ActiveSupport::TestCase
     assert_equal [ "Novela" ], book.categories.map(&:name)
     assert_empty book.publishers
   end
+
+  test "restoring a book restores its lists from the trash" do
+    author = Author.create!(name: "Autor borrado")
+    book = Book.create!(title: "Libro", authors: [ author ], discarded_at: Time.current)
+    author.discard!
+
+    book.undiscard!
+
+    assert author.reload.kept?
+  end
 end

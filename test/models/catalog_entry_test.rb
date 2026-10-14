@@ -38,6 +38,45 @@ class CatalogEntryTest < ActiveSupport::TestCase
       assert_equal 2, model.count
     end
 
+    test "#{model.name}.for_names restores names that are in the trash" do
+      trashed = model.create!(name: "En la papelera", discarded_at: Time.current)
+
+      assert_equal [ trashed ], model.for_names([ "en la papelera" ])
+      assert trashed.reload.kept?
+    end
+
+    test "#{model.name} counts only books that are not in the trash" do
+      entry = model.create!(name: "Con libros")
+      association = model.model_name.plural
+      Book.create!(title: "Activo", association => [ entry ])
+      Book.create!(title: "Borrado", association => [ entry ], discarded_at: Time.current)
+
+      assert_equal({ entry.id => 1 }, model.kept_book_counts)
+      assert entry.kept_books?
+    end
+
+    test "#{model.name} merges into another, moving books without duplicates" do
+      association = model.model_name.plural
+      source = model.create!(name: "Duplicado")
+      target = model.create!(name: "Original")
+      only_source = Book.create!(title: "Solo en el duplicado", association => [ source ])
+      both = Book.create!(title: "En los dos", association => [ source, target ])
+
+      source.merge_into!(target)
+
+      assert source.reload.discarded?
+      assert_empty source.books
+      assert_equal [ target ], only_source.reload.public_send(association)
+      assert_equal [ target ], both.reload.public_send(association)
+    end
+
+    test "#{model.name} cannot merge into itself" do
+      entry = model.create!(name: "Único")
+
+      assert_raises(ArgumentError) { entry.merge_into!(entry) }
+      assert entry.reload.kept?
+    end
+
     test "#{model.name} sorts alphabetically in Spanish" do
       %w[Zeta Ángel beta].each { |name| model.create!(name:) }
 

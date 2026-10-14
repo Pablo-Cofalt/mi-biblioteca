@@ -1,6 +1,9 @@
 class Book < ApplicationRecord
   include Discard::Model
 
+  # A restored book brings back the lists it uses, if they were in the trash.
+  after_undiscard { [ authors, categories, publishers ].each { |entries| entries.discarded.each(&:undiscard!) } }
+
   has_many :book_authors, -> { order(:id) }, dependent: :destroy
   has_many :authors, through: :book_authors
   has_many :book_categories, dependent: :destroy

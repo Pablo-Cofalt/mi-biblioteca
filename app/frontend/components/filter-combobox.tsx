@@ -1,3 +1,4 @@
+import { cn } from 'cn'
 import { ChevronsUpDown } from 'lucide-react'
 import { useState } from 'react'
 
@@ -26,6 +27,9 @@ type FilterComboboxProps = {
   options: Option[]
   value: number | null
   onChange: (value: number | null) => void
+  // Show a "Todas las opciones" item that clears the selection.
+  allowAll?: boolean
+  className?: string
 }
 
 export function FilterCombobox({
@@ -34,6 +38,8 @@ export function FilterCombobox({
   options,
   value,
   onChange,
+  allowAll = true,
+  className,
 }: FilterComboboxProps) {
   const [open, setOpen] = useState(false)
   const selected = options.find((option) => option.id === value)
@@ -51,7 +57,7 @@ export function FilterCombobox({
           role="combobox"
           aria-expanded={open}
           aria-label={label}
-          className="w-full justify-between font-normal sm:w-52"
+          className={cn('w-full justify-between font-normal sm:w-52', className)}
         >
           <span className={selected ? 'truncate' : 'truncate text-muted-foreground'}>
             {selected ? selected.name : label}
@@ -65,13 +71,15 @@ export function FilterCombobox({
           <CommandList>
             <CommandEmpty>Sin resultados.</CommandEmpty>
             <CommandGroup>
-              <CommandItem
-                value={ALL_OPTIONS}
-                data-checked={value === null}
-                onSelect={() => select(null)}
-              >
-                {ALL_OPTIONS}
-              </CommandItem>
+              {allowAll && (
+                <CommandItem
+                  value={ALL_OPTIONS}
+                  data-checked={value === null}
+                  onSelect={() => select(null)}
+                >
+                  {ALL_OPTIONS}
+                </CommandItem>
+              )}
               {options.map((option) => (
                 <CommandItem
                   key={option.id}

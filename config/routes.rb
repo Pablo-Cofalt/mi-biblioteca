@@ -16,11 +16,19 @@ Rails.application.routes.draw do
   namespace :admin do
     root "dashboard#index"
 
-    resources :books, path: "libros", except: :show, path_names: { new: "nuevo", edit: "editar" } do
+    concern :trashable do
       get :trash, path: "papelera", on: :collection
       member do
         patch :restore, path: "restaurar"
         delete :purge, path: "eliminar"
+      end
+    end
+
+    resources :books, path: "libros", except: :show, path_names: { new: "nuevo", edit: "editar" }, concerns: :trashable
+
+    { authors: "autores", publishers: "editoriales", categories: "categorias" }.each do |list, path|
+      resources list, path:, only: %i[index create update destroy], concerns: :trashable do
+        post :merge, path: "unificar", on: :member
       end
     end
   end
