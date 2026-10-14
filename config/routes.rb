@@ -8,5 +8,12 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root "home#index"
+  root "books#index"
+
+  get "ingresar" => "sessions#new", as: :new_session
+  resource :session, only: %i[create destroy]
+
+  namespace :admin do
+    root "dashboard#index"
+  end
 end

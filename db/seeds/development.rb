@@ -1,4 +1,11 @@
-# Sample catalog to try the app locally. Only loaded in development.
+# Sample data to try the app locally. Only loaded in development.
+
+ADMIN_EMAIL = "admin@mibiblioteca.local"
+ADMIN_PASSWORD = "biblioteca"
+
+User.find_or_create_by!(email_address: ADMIN_EMAIL) do |user|
+  user.password = ADMIN_PASSWORD
+end
 
 BOOKS = [
   { title: "Cuentos de la selva", authors: [ "Horacio Quiroga" ], publishers: [ "Colihue" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 1 - A" },
@@ -76,5 +83,6 @@ BOOKS.each do |data|
   )
 end
 
+puts "Admin: #{ADMIN_EMAIL} / #{ADMIN_PASSWORD}"
 puts "Datos de ejemplo: #{Book.count} libros, #{Author.count} autores, " \
      "#{Publisher.count} editoriales, #{Category.count} categorías."

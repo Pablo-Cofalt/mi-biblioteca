@@ -34,7 +34,28 @@ bin/dev
 
 La app queda en http://localhost:3000.
 
+## Datos de ejemplo y administrador
+
+En desarrollo, `bin/rails db:seed` carga un catálogo de ejemplo y crea el administrador:
+
+- Email: `admin@mibiblioteca.local`
+- Contraseña: `biblioteca`
+
+El login está en http://localhost:3000/ingresar y el panel en http://localhost:3000/admin.
+
+En producción el seed solo crea el administrador, a partir de las variables `ADMIN_EMAIL` y `ADMIN_PASSWORD`. Si el usuario ya existe, no le cambia la contraseña.
+
+### Cambiar la contraseña del administrador
+
+```bash
+bin/rails admin:password
+```
+
+Pide la contraseña nueva dos veces y cierra las sesiones abiertas. Si hay más de un administrador, se elige con `EMAIL=...`.
+
 ## Comandos útiles
+
+Antes de correr comandos que usen Node (tests, `npm`, `npx`), activá la versión del proyecto con `nvm use`. `bin/dev` lo hace solo.
 
 ```bash
 bin/rails test        # tests
