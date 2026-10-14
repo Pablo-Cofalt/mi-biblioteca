@@ -3,7 +3,16 @@ export type FlashData = {
   alert?: string
 }
 
-export type SharedProps = {}
+export type User = {
+  id: number
+  email_address: string
+}
+
+export type SharedProps = {
+  auth: {
+    user: User | null
+  }
+}
 
 export type Option = {
   id: number
