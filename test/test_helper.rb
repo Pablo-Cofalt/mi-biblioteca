@@ -4,6 +4,10 @@ require "rails/test_help"
 require_relative "test_helpers/session_test_helper"
 require "inertia_rails/minitest"
 
+# Build the frontend once, before tests fork into parallel workers;
+# otherwise each worker races to build it into the same folder.
+ViteRuby.commands.build || abort("La compilación del frontend con Vite falló.")
+
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
