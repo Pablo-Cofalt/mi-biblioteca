@@ -10,12 +10,14 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
   test "shows the panel to a logged-in admin" do
     sign_in_as users(:admin)
     Book.create!(title: "Rayuela")
+    Book.create!(title: "Borrado", discarded_at: Time.current)
 
     get admin_root_path
 
     assert_response :success
     assert_inertia_component "admin/dashboard/index"
     assert_equal 1, inertia.props[:counts][:books]
+    assert_equal 1, inertia.props[:counts][:trash]
     assert_equal "admin@example.com", inertia.props[:auth][:user][:email_address]
   end
 end

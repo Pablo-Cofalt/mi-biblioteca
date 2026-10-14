@@ -15,16 +15,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { matches } from '@/lib/text'
 import type { Option } from '@/types'
 
 const ALL_OPTIONS = 'Todas las opciones'
-
-// Case and accent insensitive, so "garcia" finds "García".
-const normalize = (text: string) =>
-  text.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
-
-const filter = (value: string, search: string) =>
-  normalize(value).includes(normalize(search)) ? 1 : 0
 
 type FilterComboboxProps = {
   label: string
@@ -66,7 +60,7 @@ export function FilterCombobox({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-64 p-0" align="start">
-        <Command filter={filter}>
+        <Command filter={matches}>
           <CommandInput placeholder={placeholder} />
           <CommandList>
             <CommandEmpty>Sin resultados.</CommandEmpty>

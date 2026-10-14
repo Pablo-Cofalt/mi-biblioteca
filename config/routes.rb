@@ -15,5 +15,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "dashboard#index"
+
+    resources :books, path: "libros", except: :show, path_names: { new: "nuevo", edit: "editar" } do
+      get :trash, path: "papelera", on: :collection
+      member do
+        patch :restore, path: "restaurar"
+        delete :purge, path: "eliminar"
+      end
+    end
   end
 end

@@ -29,6 +29,15 @@ class CatalogEntryTest < ActiveSupport::TestCase
       assert_includes record.errors[:base], "No se puede eliminar el registro porque existen libros dependientes"
     end
 
+    test "#{model.name}.for_names finds or creates, ignoring blanks and repeats" do
+      existing = model.create!(name: "Planeta")
+
+      records = model.for_names([ "PLANETA", "", "Nuevo", "nuevo " ])
+
+      assert_equal [ existing, model.find_by!(name: "Nuevo") ], records
+      assert_equal 2, model.count
+    end
+
     test "#{model.name} sorts alphabetically in Spanish" do
       %w[Zeta Ángel beta].each { |name| model.create!(name:) }
 

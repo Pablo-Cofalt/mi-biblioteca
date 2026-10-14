@@ -1,6 +1,8 @@
 export type FlashData = {
   notice?: string
   alert?: string
+  // URL that reverts the action just taken (e.g. restore a discarded book).
+  undo?: string
 }
 
 export type User = {

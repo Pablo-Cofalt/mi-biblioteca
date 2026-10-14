@@ -43,6 +43,8 @@ En desarrollo, `bin/rails db:seed` carga un catálogo de ejemplo y crea el admin
 
 El login está en http://localhost:3000/ingresar y el panel en http://localhost:3000/admin.
 
+Borrar un libro desde el panel no lo elimina: lo mueve a la **papelera** (`/admin/libros/papelera`), desde donde se puede restaurar o eliminar definitivamente.
+
 En producción el seed solo crea el administrador, a partir de las variables `ADMIN_EMAIL` y `ADMIN_PASSWORD`. Si el usuario ya existe, no le cambia la contraseña.
 
 ### Cambiar la contraseña del administrador

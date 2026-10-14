@@ -1,7 +1,8 @@
-import { usePage } from '@inertiajs/react'
-import { CircleAlert, CircleCheck } from 'lucide-react'
+import { router, usePage } from '@inertiajs/react'
+import { CircleAlert, CircleCheck, Undo2 } from 'lucide-react'
 
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Alert, AlertAction, AlertDescription } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
 
 export function FlashMessages() {
   const { flash } = usePage()
@@ -14,6 +15,20 @@ export function FlashMessages() {
         <Alert>
           <CircleCheck />
           <AlertDescription>{flash.notice}</AlertDescription>
+          {flash.undo && (
+            <AlertAction>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  router.patch(flash.undo!, {}, { preserveScroll: true })
+                }
+              >
+                <Undo2 />
+                Deshacer
+              </Button>
+            </AlertAction>
+          )}
         </Alert>
       )}
       {flash.alert && (
