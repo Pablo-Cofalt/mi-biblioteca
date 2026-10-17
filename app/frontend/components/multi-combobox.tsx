@@ -108,17 +108,6 @@ export function MultiCombobox({
             />
             <CommandList>
               <CommandEmpty>Escribí un nombre para crearlo.</CommandEmpty>
-              {typed && !exists && (
-                <CommandGroup>
-                  <CommandItem
-                    value={CREATE_VALUE}
-                    onSelect={() => add(typed)}
-                  >
-                    <Plus />
-                    Crear “{typed}”
-                  </CommandItem>
-                </CommandGroup>
-              )}
               <CommandGroup>
                 {available.map((option) => (
                   <CommandItem
@@ -130,6 +119,18 @@ export function MultiCombobox({
                   </CommandItem>
                 ))}
               </CommandGroup>
+              {/* Last, so Enter picks an existing match before creating a near-duplicate. */}
+              {typed && !exists && (
+                <CommandGroup>
+                  <CommandItem
+                    value={CREATE_VALUE}
+                    onSelect={() => add(typed)}
+                  >
+                    <Plus />
+                    Crear “{typed}”
+                  </CommandItem>
+                </CommandGroup>
+              )}
             </CommandList>
           </Command>
         </PopoverContent>

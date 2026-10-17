@@ -59,8 +59,11 @@ Pide la contraseña nueva dos veces y cierra las sesiones abiertas. Si hay más 
 
 Antes de correr comandos que usen Node (tests, `npm`, `npx`), activá la versión del proyecto con `nvm use`. `bin/dev` lo hace solo.
 
+Los tests de sistema usan Chrome headless: Selenium descarga Chrome y chromedriver la primera vez (en `~/.cache/selenium`). En WSL/Ubuntu hace falta además `sudo apt install libasound2t64`. Si un test falla, la captura queda en `tmp/screenshots`.
+
 ```bash
-bin/rails test        # tests
+bin/rails test        # tests (modelos, controladores, tareas)
+bin/rails test:system # tests de punta a punta en Chrome headless
 bin/rubocop           # estilo Ruby
 npm run check         # chequeo de tipos TypeScript
 npx shadcn@latest add <componente>   # agregar componentes de shadcn
