@@ -46,3 +46,19 @@ export type BookRow = {
   categories: string[]
   publishers: string[]
 }
+
+export type CatalogList = {
+  singular: string
+  plural: string
+  title: string
+  new: string
+  path: string
+  // Book list filter param for this list, e.g. "author_id".
+  book_filter: string
+}
+
+export type CatalogEntryRow = {
+  id: number
+  name: string
+  books_count: number
+}

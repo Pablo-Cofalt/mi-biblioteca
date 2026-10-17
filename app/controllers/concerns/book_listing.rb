@@ -36,6 +36,6 @@ module BookListing
     end
 
     def options_for(model)
-      model.alphabetical.pluck(:id, :name).map { |id, name| { id:, name: } }
+      model.kept.alphabetical.pluck(:id, :name).map { |id, name| { id:, name: } }
     end
 end

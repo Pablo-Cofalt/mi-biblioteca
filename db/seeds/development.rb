@@ -18,7 +18,7 @@ BOOKS = [
   { title: "El Aleph", authors: [ "Jorge Luis Borges" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos", "Clásicos" ], location: "Estante 3 - B" },
   { title: "Rayuela", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Novela", "Clásicos" ], location: "Estante 3 - B" },
   { title: "Historias de cronopios y de famas", authors: [ "Julio Cortázar" ], publishers: [ "Alfaguara" ], categories: [ "Cuentos" ], location: "Estante 3 - B" },
-  { title: "Bestiario", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos" ], location: "Estante 3 - B" },
+  { title: "Bestiario", authors: [ "Julio Cortázar" ], publishers: [ "Sudamericana" ], categories: [ "Cuentos", "Cuento" ], location: "Estante 3 - B" },
   { title: "Martín Fierro", authors: [ "José Hernández" ], publishers: [ "Colihue" ], categories: [ "Poesía", "Clásicos" ], location: "Estante 1 - B" },
   { title: "Don Segundo Sombra", authors: [ "Ricardo Güiraldes" ], publishers: [ "Losada" ], categories: [ "Novela", "Clásicos" ], location: "Estante 1 - B" },
   { title: "Facundo", authors: [ "Domingo Faustino Sarmiento" ], publishers: [ "Colihue" ], categories: [ "Ensayo", "Historia" ], location: "Estante 1 - B" },
@@ -77,9 +77,9 @@ BOOKS.each do |data|
   book = Book.find_or_initialize_by(title: data[:title])
   book.update!(
     location: data[:location],
-    authors: data[:authors].map { |name| Author.find_or_create_by!(name:) },
-    publishers: data[:publishers].map { |name| Publisher.find_or_create_by!(name:) },
-    categories: data[:categories].map { |name| Category.find_or_create_by!(name:) }
+    author_names: data[:authors],
+    publisher_names: data[:publishers],
+    category_names: data[:categories]
   )
 end
 
@@ -99,6 +99,13 @@ TRASHED_BOOKS.each do |data|
   )
 end
 
+# Lists already in the trash, and "Cuento" (above) as a duplicate of
+# "Cuentos", to try the admin list screens.
+{ Author => "Autor de prueba", Publisher => "Editorial de prueba", Category => "Varios" }.each do |model, name|
+  entry = model.find_or_create_by!(name:)
+  entry.discard! if entry.kept?
+end
+
 puts "Admin: #{ADMIN_EMAIL} / #{ADMIN_PASSWORD}"
-puts "Datos de ejemplo: #{Book.kept.count} libros (#{Book.discarded.count} en la papelera), #{Author.count} autores, " \
-     "#{Publisher.count} editoriales, #{Category.count} categorías."
+puts "Datos de ejemplo: #{Book.kept.count} libros (#{Book.discarded.count} en la papelera), #{Author.kept.count} autores, " \
+     "#{Publisher.kept.count} editoriales, #{Category.kept.count} categorías (más algunos en la papelera)."

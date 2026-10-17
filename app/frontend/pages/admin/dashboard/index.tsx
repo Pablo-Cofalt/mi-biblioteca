@@ -23,10 +23,10 @@ type DashboardProps = {
 export default function AdminDashboard({ counts }: DashboardProps) {
   const stats = [
     { label: 'Libros', value: counts.books, href: '/admin/libros' },
-    { label: 'Autores', value: counts.authors },
-    { label: 'Editoriales', value: counts.publishers },
-    { label: 'Categorías', value: counts.categories },
-    { label: 'En la papelera', value: counts.trash, href: '/admin/libros/papelera' },
+    { label: 'Autores', value: counts.authors, href: '/admin/autores' },
+    { label: 'Editoriales', value: counts.publishers, href: '/admin/editoriales' },
+    { label: 'Categorías', value: counts.categories, href: '/admin/categorias' },
+    { label: 'Libros en la papelera', value: counts.trash, href: '/admin/libros/papelera' },
   ]
 
   return (

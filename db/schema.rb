@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_14_132130) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_14_162945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "unaccent"
@@ -19,7 +19,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_14_132130) do
     t.string "name", null: false, collation: "es-AR-x-icu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
     t.index "lower((name)::text)", name: "index_authors_on_lower_name", unique: true
+    t.index ["discarded_at"], name: "index_authors_on_discarded_at"
   end
 
   create_table "book_authors", force: :cascade do |t|
@@ -63,14 +65,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_14_132130) do
     t.string "name", null: false, collation: "es-AR-x-icu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
     t.index "lower((name)::text)", name: "index_categories_on_lower_name", unique: true
+    t.index ["discarded_at"], name: "index_categories_on_discarded_at"
   end
 
   create_table "publishers", force: :cascade do |t|
     t.string "name", null: false, collation: "es-AR-x-icu"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "discarded_at"
     t.index "lower((name)::text)", name: "index_publishers_on_lower_name", unique: true
+    t.index ["discarded_at"], name: "index_publishers_on_discarded_at"
   end
 
   create_table "sessions", force: :cascade do |t|

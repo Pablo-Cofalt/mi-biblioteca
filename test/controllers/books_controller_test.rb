@@ -64,6 +64,14 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_equal [ "Ánimas y otros cuentos", "Cuentos de la selva" ], titles
   end
 
+  test "leaves lists in the trash out of the filters" do
+    Category.create!(name: "Borrada", discarded_at: Time.current)
+
+    get root_path
+
+    assert_equal [ "Cuentos", "Poesía" ], inertia.props[:categories].pluck(:name)
+  end
+
   test "sorts from Z to A" do
     get root_path(direction: "desc")
 
