@@ -14,6 +14,11 @@ class Book < ApplicationRecord
   normalizes :title, with: ->(title) { title.squish }
   normalizes :location, with: ->(location) { location.squish.presence }
 
+  # Leading signs like "¡", "¿" or quotes don't count for alphabetical order.
+  LEADING_SIGNS = /\A[[:punct:][:space:]¡¿«»“”‘’]+/
+
+  before_validation { self.sort_title = title.to_s.sub(LEADING_SIGNS, "").presence || title }
+
   validates :title, presence: true, length: { maximum: 255 }
   validates :location, length: { maximum: 255 }
 
@@ -30,7 +35,7 @@ class Book < ApplicationRecord
     self.publishers = Publisher.for_names(names)
   end
 
-  scope :alphabetical, ->(direction = :asc) { order(title: direction, id: :asc) }
+  scope :alphabetical, ->(direction = :asc) { order(sort_title: direction, title: direction, id: :asc) }
 
   # Matches the title or any author's name, ignoring case and accents.
   scope :matching, ->(text) {
