@@ -48,6 +48,24 @@ class BookTest < ActiveSupport::TestCase
     assert_equal %w[abeja Árbol nube Ñandú zorro], Book.alphabetical.pluck(:title)
   end
 
+  test "ignores leading signs when sorting" do
+    [ "¡Socorro!", "Alicia", "¿Quién fue?", "«Corazón»", "Sol", "Zorro", "\"Mafalda\"" ].each { |title| Book.create!(title:) }
+
+    assert_equal [ "Alicia", "«Corazón»", "\"Mafalda\"", "¿Quién fue?", "¡Socorro!", "Sol", "Zorro" ],
+                 Book.alphabetical.pluck(:title)
+    assert_equal [ "Zorro", "Sol", "¡Socorro!" ], Book.alphabetical(:desc).limit(3).pluck(:title)
+  end
+
+  test "keeps the sort title in sync with the title" do
+    book = Book.create!(title: "¡Socorro!")
+    assert_equal "Socorro!", book.sort_title
+
+    book.update!(title: "¿Y ahora?")
+    assert_equal "Y ahora?", book.sort_title
+
+    assert_equal "¡¿?", Book.create!(title: "¡¿?").sort_title
+  end
+
   test "discarding keeps the book but hides it from kept" do
     book = Book.create!(title: "Rayuela")
 
