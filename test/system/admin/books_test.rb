@@ -77,11 +77,10 @@ class Admin::BooksTest < ApplicationSystemTestCase
     def add(button, text, create: false)
       click_on button
       find("[cmdk-input]").set(text)
-      if create
-        find("[role=option]", text: "Crear “#{text}”").click
-      else
-        find("[role=option]:not([data-value='__create__'])", text: /#{text}/i, match: :first).click
-      end
+      option = create ? [ "[role=option]", { text: "Crear “#{text}”" } ] :
+                        [ "[role=option]:not([data-value='__create__'])", { text: /#{text}/i, match: :first } ]
+      # The list re-renders while it filters; retry if the option went stale.
+      page.document.synchronize { find(option[0], **option[1]).click }
       find("body").send_keys(:escape)
     end
 end
